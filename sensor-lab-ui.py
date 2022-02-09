@@ -35,7 +35,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.force_data_line =  self.force_plotView.plot(self.time_axis, self.force_data, pen=pen)
 
         self.serial = QtSerialPort.QSerialPort(
-            '/dev/tty.usbmodem141201',
+            '/dev/tty.usbmodem144101',
             baudRate = QtSerialPort.QSerialPort.Baud9600,     
             dataBits = QtSerialPort.QSerialPort.Data8,
             readyRead = self.receive
@@ -53,6 +53,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         while self.serial.canReadLine():
             ino_data = self.serial.readLine().data().decode()
             ino_text = ino_data.rstrip('\r\n')
+            print(ino_text)
             # ino_text = re.findall(r"<sensor\(T(\d+);I(\d+);F(\d+)\)>", ino_text)
             ino_data_array = re.findall(r"(\d+)", ino_text)
             print(ino_data_array)

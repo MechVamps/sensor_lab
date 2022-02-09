@@ -143,7 +143,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_3.setText(_translate("MainWindow", "Temp. Sensor\n"
-" (F)"))
+" (C)"))
         self.label_4.setText(_translate("MainWindow", "IR Sensor\n"
 "(cm)"))
         self.label_12.setText(_translate("MainWindow", "Force Sensor\n"

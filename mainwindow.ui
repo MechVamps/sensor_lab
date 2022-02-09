@@ -58,7 +58,7 @@
           </property>
           <property name="text">
            <string>Temp. Sensor
- (F)</string>
+ (C)</string>
           </property>
           <property name="textFormat">
            <enum>Qt::PlainText</enum>

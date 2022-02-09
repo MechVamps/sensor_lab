@@ -35,7 +35,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.force_data_line =  self.force_plotView.plot(self.time_axis, self.force_data, pen=pen)
 
         self.serial = QtSerialPort.QSerialPort(
-            '/dev/tty.usbmodem144101',
+            '/dev/tty.usbmodem145301',
             baudRate = QtSerialPort.QSerialPort.Baud9600,     
             dataBits = QtSerialPort.QSerialPort.Data8,
             readyRead = self.receive
@@ -62,6 +62,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.force_value = int(ino_data_array[2])
 
     def update_plot_data(self):
+
+        self.ir_lcd.display(str(self.ir_value))
+        self.force_lcd.display(str(self.force_value))
+        self.temp_lcd.display(str(self.temp_value))
 
         self.time_axis = self.time_axis[1:]  # Remove the first y element.
         self.time_axis.append(self.time_axis[-1] + 1)  # Add a new value 1 higher than the last.

@@ -25,6 +25,7 @@ int temp = 0;
 int tempPin = 1; // dibs on pin A1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 //// FSR VARIABLE DEFINE:=
@@ -53,6 +54,14 @@ long force = 0;
 void setup() 
 {
 >>>>>>> main
+=======
+//// FSR VARIABLE DEFINE:=
+int fsrPin = 2;     // the FSR and 10K pulldown are connected to a0
+long force = 0; 
+
+void setup() 
+{
+>>>>>>> main
   // Begin serial communication at a baudrate of 9600:
   Serial.begin(9600);
 }
@@ -65,6 +74,7 @@ double read_temperature(int pin)
   float volt = analogRead(pin) * 5.0;
   volt /= 1024.0; 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   //IR LOOP CODE:=
   // Get a distance measurement and store it as distance_cm:
@@ -105,6 +115,14 @@ fsrReading = analogRead(fsrPin);  // get raw counts from FSR
   return temp;
 }
 
+=======
+  // converting from 10 mv per degree wit 500 mV offset
+  int temp = (volt - 0.5) * 100;
+   
+  return temp;
+}
+
+>>>>>>> main
 long read_force(int pin)
 {
   int fsrReading;     // the analog reading from the FSR resistor divider
@@ -125,6 +143,9 @@ long read_force(int pin)
   if (fsrVoltage == 0) {
     // Serial.println("No pressure");  
     fsrForce = 0;
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
   } else {
     // The voltage = Vcc * R / (R + FSR) where R = 10K and Vcc = 5V
@@ -132,6 +153,7 @@ long read_force(int pin)
     fsrResistance = 5000 - fsrVoltage;     // fsrVoltage is in millivolts so 5V = 5000mV
     fsrResistance *= 10000;                // 10K resistor
     fsrResistance /= fsrVoltage;
+<<<<<<< HEAD
 <<<<<<< HEAD
     Serial.print("FSR resistance in ohms = ");
     Serial.println(fsrResistance, 4);
@@ -194,6 +216,24 @@ long read_force(int pin)
 //  }
 //    delay(100);
 }
+=======
+    // Serial.print("FSR resistance in ohms = ");
+    // Serial.println(fsrResistance, 4);
+ 
+    fsrConductance = 1000000;           // we measure in micromhos so 
+    fsrConductance /= fsrResistance;
+    // Serial.print("Conductance in microMhos: ");
+    // Serial.println(fsrConductance, 4);
+ 
+    // Use the two FSR guide graphs to approximate the force
+    if (fsrConductance <= 1000) {
+      fsrForce = fsrConductance / 80;  
+    } else {
+      fsrForce = fsrConductance - 1000;
+      fsrForce /= 30;          
+    }
+  }
+>>>>>>> main
 =======
     // Serial.print("FSR resistance in ohms = ");
     // Serial.println(fsrResistance, 4);
